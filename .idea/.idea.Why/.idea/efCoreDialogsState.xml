@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EfCoreDialogsState">
+    <option name="keyValueStorage">
+      <map>
+        <entry key="Common:264d4e54-d45b-44b5-9f65-36917b54c239:dbContext" value="MovieApp.Data.ApplicationDbContext" />
+        <entry key="Common:7c406ec2-27fe-43b8-bb4f-486fc32a3105:dbContext" value="MovieApp.Data.AuthDbContext" />
+        <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:noBuild" value="false" />
+        <entry key="Common:outputFolder" value="Migrations" />
+        <entry key="Common:useDefaultConnection" value="true" />
+      </map>
+    </option>
+  </component>
+</project>
