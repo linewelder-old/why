@@ -36,13 +36,23 @@ if (builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    await scope.ServiceProvider
+        .GetService<ApplicationDbContext>()!
+        .Database.MigrateAsync();
+
+    if (app.Environment.IsDevelopment())
+    {
+        await scope.ServiceProvider
+            .GetService<SeedData>()!
+            .InitializeAsync();
+    }
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
-
-    using var scope = app.Services.CreateScope();
-    var seeder = scope.ServiceProvider.GetService<SeedData>();
-    await seeder!.InitializeAsync();
 }
 else
 {
