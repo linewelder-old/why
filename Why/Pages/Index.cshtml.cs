@@ -54,18 +54,23 @@ public class IndexModel : PageModel
         if (user is null)
         {
             ModelState.AddModelError("", "You must be logged in to post");
-            return Unauthorized();
+            return Page();
         }
 
-        _context.Posts.Add(new Post
+        var post = new Post
         {
             Text = PostMessage,
             Date = DateTime.Now,
             UserId = user.Id
-        });
+        };
+        if (!TryValidateModel(post))
+        {
+            return Page();
+        }
+
+        _context.Posts.Add(post);
         await _context.SaveChangesAsync();
 
-        PostMessage = string.Empty;
         return Redirect("/");
     }
 }

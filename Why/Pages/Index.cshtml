@@ -8,10 +8,6 @@
 
 <div class="row justify-content-center">
     <div class="col-lg-8">
-        <div class="alert-danger">
-            @Html.ValidationSummary(excludePropertyErrors: true)
-        </div>
-
         @if (SignInManager.IsSignedIn(User))
         {
             <form method="post" class="card p-3" autocomplete="off">
@@ -19,7 +15,9 @@
                     <div class="col">
                         <textarea class="form-control" asp-for="PostMessage" placeholder="Say something">
                         </textarea>
-                        <span class="text-danger" asp-validation-for="PostMessage"></span>
+                        <span class="text-danger">
+                            @Html.ValidationSummary()
+                        </span>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-dark" type="submit">Send</button>

@@ -7,7 +7,8 @@ public class Post
 {
     public int Id { get; set; }
 
-    [Required, MaxLength(255)]
+    [Required(ErrorMessage = "Post cannot be empty")]
+    [MaxLength(255, ErrorMessage = "Post can only be up to 255 characters long")]
     public required string Text { get; set; }
 
     [Required]
