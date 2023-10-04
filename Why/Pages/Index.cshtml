@@ -34,7 +34,16 @@
                 </div>
                 <div class="card-footer">
                     <p class="text-secondary text-end">
-                        - @post.User!.UserName on @post.Date.ToLocalTime().ToString("dddd, d o\\f MMMM yyyy")
+                        - @post.User!.UserName at
+                        @if (post.Date.Date == DateTime.Today)
+                        {
+                            @post.Date.ToString(@"HH:mm")
+                        }
+                        else
+                        {
+                            @post.Date.ToString(@"HH:mm on d MMM yyyy")
+                        }
+                        GMT+3
                     </p>
                 </div>
             </div>
