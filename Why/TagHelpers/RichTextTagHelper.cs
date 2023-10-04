@@ -8,6 +8,8 @@ namespace Why.TagHelpers;
 [HtmlTargetElement("rich-text", Attributes = "text")]
 public class RichTextTagHelper : TagHelper
 {
+    // Required to be settable by Razor pages.
+    // ReSharper disable once PropertyCanBeMadeInitOnly.Global
     public required string Text { get; set; }
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
