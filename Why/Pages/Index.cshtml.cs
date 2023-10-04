@@ -10,14 +10,11 @@ namespace Why.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
     private readonly ApplicationDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context,
-        UserManager<IdentityUser> userManager)
+    public IndexModel(ApplicationDbContext context, UserManager<IdentityUser> userManager)
     {
-        _logger = logger;
         _context = context;
         _userManager = userManager;
     }
