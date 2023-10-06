@@ -1,0 +1,21 @@
+@model Why.Models.Post
+
+<div class="card mt-3">
+    <div class="card-body">
+        <rich-text text="@Model.Text"></rich-text>
+    </div>
+    <div class="card-footer">
+        <p class="text-secondary text-end">
+            - @Model.User!.UserName at
+            @if (Model.Date.Date == DateTime.Today)
+            {
+                @Model.Date.ToString("HH:mm")
+            }
+            else
+            {
+                @Model.Date.ToString("HH:mm on d MMM yyyy")
+            }
+            GMT+3
+        </p>
+    </div>
+</div>
