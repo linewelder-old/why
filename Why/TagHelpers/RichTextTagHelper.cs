@@ -56,6 +56,12 @@ public class RichTextTagHelper : TagHelper
             {
                 output.Content.AppendHtml("<br/>");
             }
+            else if (char.IsHighSurrogate(cursor.CurrentChar))
+            {
+                output.Content.Append(
+                    cursor.Text.Slice(cursor.CurrentIndex, 2).ToString());
+                cursor.Advance(2);
+            }
             else
             {
                 output.Content.Append(cursor.CurrentChar.ToString());

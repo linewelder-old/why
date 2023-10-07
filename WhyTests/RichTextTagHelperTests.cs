@@ -20,6 +20,14 @@ public class RichTextTagHelperTests
             "&lt;h1&gt;test&lt;/h1&gt;");
     }
 
+    [Fact]
+    public void SurrogatePairsAreHandledCorrectly()
+    {
+        AssertTransformation(
+            "\ud835\udd4f\ud835\udd50",
+            "&#x1D54F;&#x1D550;");
+    }
+
     [Theory, MemberData(nameof(NewLines))]
     public void NewLinesAreReplacedWithBr(string newLine)
     {
