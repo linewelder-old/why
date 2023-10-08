@@ -30,9 +30,9 @@ public class RichTextTagHelper : TagHelper
                     continue;
                 }
 
-                output.Content.AppendHtml("""<h2 class="display-6"><marquee>""");
+                output.Content.AppendHtml("""<marquee class="display-6">""");
                 output.Content.Append(content.ToString());
-                output.Content.AppendHtml("</marquee></h2>");
+                output.Content.AppendHtml("</marquee>");
 
                 cursor.Advance(3);
                 cursor.TryConsumeNewLine();

@@ -118,7 +118,7 @@ public class RichTextTagHelperTests
     }
 
     private static string HtmlMarquee(string content) =>
-        $"""<h2 class="display-6"><marquee>{content}</marquee></h2>""";
+        $"""<marquee class="display-6">{content}</marquee>""";
 
     private static string HtmlImage(string url) =>
         $"""<img alt="Attached image" src="{url}"/>""";
