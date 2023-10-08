@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
+using Why.Data;
 
 namespace Why.Models;
 
@@ -17,5 +17,5 @@ public class Post
     [Required]
     public required string UserId { get; set; }
 
-    public IdentityUser? User { get; set; }
+    public User? User { get; set; }
 }

@@ -7,9 +7,9 @@ namespace Why.Data;
 public class SeedData
 {
     private readonly ApplicationDbContext _context;
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<User> _userManager;
 
-    public SeedData(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+    public SeedData(ApplicationDbContext context, UserManager<User> userManager)
     {
         _context = context;
         _userManager = userManager;
@@ -19,7 +19,7 @@ public class SeedData
     {
         if (_context.Users.Any()) return;
 
-        var admin = new IdentityUser
+        var admin = new User
         {
             Id = Guid.NewGuid().ToString(),
             UserName = "admin@host",

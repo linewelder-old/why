@@ -1,6 +1,7 @@
 ﻿@page
+@using Why.Models
 @model IndexModel
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<User> SignInManager
 
 @{
     ViewData["Title"] = "Home page";
