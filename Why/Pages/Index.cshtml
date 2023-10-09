@@ -11,20 +11,7 @@
     <div class="col-lg-8">
         @if (SignInManager.IsSignedIn(User))
         {
-            <form method="post" class="card p-3" autocomplete="off">
-                <div class="row g-3">
-                    <div class="col">
-                        <textarea class="form-control" asp-for="PostMessage" placeholder="Say something">
-                        </textarea>
-                        <span class="text-danger">
-                            @Html.ValidationSummary()
-                        </span>
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-dark" type="submit">Send</button>
-                    </div>
-                </div>
-            </form>
+            <partial name="PostEditor"/>
         }
 
         @foreach (var post in Model.Posts)

@@ -1,0 +1,25 @@
+#character-counter {
+    position: absolute;
+    bottom: 0.2rem;
+    right: 0.75rem;
+    opacity: 0.75;
+}
+
+.post-edit-button {
+    padding: 0.5rem;
+    color: var(--bs-secondary);
+    border: 1px solid var(--bs-secondary);
+    border-radius: 0.25rem;
+    background: none;
+    vertical-align: middle;
+    margin-right: 0.3rem;
+}
+
+.post-edit-button img {
+    width: 1.25rem;
+    aspect-ratio: 1 / 1;
+}
+
+.post-message-wrapper {
+    position: relative;
+}

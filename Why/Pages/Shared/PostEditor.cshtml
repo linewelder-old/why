@@ -1,0 +1,75 @@
+@using Why.Models
+@model IndexModel
+
+<div class="card p-3">
+    <form method="post" autocomplete="off">
+        <div class="post-message-wrapper">
+            <textarea id="post-message" class="form-control"
+                      style="padding-bottom: 1.5rem;" placeholder="Say something"
+                      asp-for="PostMessage" oninput="onPostMessageInput()"></textarea>
+            <span id="character-counter" class="text-secondary"></span>
+        </div>
+        <span class="text-danger">
+            @Html.ValidationSummary()
+        </span>
+
+        <div class="d-flex">
+            <div class="flex-grow-1">
+                <button onclick="addMarqueeToPostMessage()" title="Add marquee"
+                        class="post-edit-button" type="button">
+                    <span class="visually-hidden">Add marquee</span>
+                    <img alt="Hash symbol" src="images/hash.svg">
+                </button>
+                <button onclick="addImageToPostMessage()" title="Add image"
+                        class="post-edit-button" type="button">
+                    <span class="visually-hidden">Add image</span>
+                    <img alt="Hash symbol" src="images/image.svg">
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-dark align-self-end" type="submit">
+                    Send
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    const postMessage = document.getElementById('post-message');
+    const characterCounter = document.getElementById('character-counter');
+
+    function wrapSelectionInPostMessage(start, end) {
+        postMessage.setRangeText(start,
+            postMessage.selectionStart, postMessage.selectionStart);
+        postMessage.selectionStart += start.length;
+        postMessage.setRangeText(end,
+            postMessage.selectionEnd, postMessage.selectionEnd);
+        postMessage.focus();
+        postMessage.dispatchEvent(new Event('input'));
+    }
+
+    function addMarqueeToPostMessage() {
+        wrapSelectionInPostMessage('###', '###');
+    }
+
+    function addImageToPostMessage() {
+        wrapSelectionInPostMessage('![', ']');
+    }
+
+    function onPostMessageInput() {
+        const postMessageLength = postMessage.textLength;
+        characterCounter.textContent = postMessageLength > 0
+            ? `${postMessageLength}/@Post.MaxTextLength`
+            : '';
+
+        if (postMessageLength > @Post.MaxTextLength) {
+            characterCounter.classList.add('text-danger');
+        } else {
+            characterCounter.classList.remove('text-danger');
+        }
+
+        postMessage.style.height = 0;
+        postMessage.style.height = `${5 + postMessage.scrollHeight}px`;
+    }
+</script>

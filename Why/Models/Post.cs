@@ -5,6 +5,8 @@ namespace Why.Models;
 
 public class Post
 {
+    public const int MaxTextLength = 255;
+
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Post cannot be empty")]
