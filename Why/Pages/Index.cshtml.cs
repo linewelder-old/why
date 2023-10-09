@@ -57,7 +57,7 @@ public class IndexModel : PageModel
         var post = new Post
         {
             Text = PostMessage,
-            Date = DateTime.Now,
+            Date = DateTime.Now.ToUniversalTime(),
             UserId = user.Id
         };
         if (!TryValidateModel(post))

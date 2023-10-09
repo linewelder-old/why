@@ -1,4 +1,15 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const today = new Date();
+const isToday = (date) =>
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate();
 
-// Write your JavaScript code.
+const times = document.getElementsByTagName('time');
+for (const time of times) {
+    const timestamp = new Date(time.attributes['datetime'].value);
+
+    time.textContent = timestamp.toLocaleTimeString();
+    if (!isToday(timestamp)) {
+        time.textContent += ", " + timestamp.toLocaleDateString();
+    }
+}

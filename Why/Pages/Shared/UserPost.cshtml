@@ -7,15 +7,9 @@
     <div class="card-footer">
         <p class="text-secondary text-end">
             - @Model.User!.UserName at
-            @if (Model.Date.Date == DateTime.Today)
-            {
-                @Model.Date.ToString("HH:mm")
-            }
-            else
-            {
-                @Model.Date.ToString("HH:mm on d MMM yyyy")
-            }
-            GMT+3
+            <time datetime="@Model.Date.ToString("O")Z">
+                @Model.Date.ToString("g") GMT
+            </time>
         </p>
     </div>
 </div>

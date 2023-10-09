@@ -46,7 +46,7 @@ public class SeedData
         {
             Text = "Hello, world!",
             UserId = admin.Id,
-            Date = DateTime.Now
+            Date = DateTime.Now.ToUniversalTime()
         });
         await _context.SaveChangesAsync();
     }
