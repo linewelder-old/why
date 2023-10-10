@@ -6,9 +6,19 @@ using Why.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(
-        builder.Configuration.GetConnectionString("DefaultConnection") ??
-        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+{
+    if (builder.Environment.IsDevelopment())
+    {
+        options.UseSqlite(
+            builder.Configuration.GetConnectionString("SqliteConnection"));
+    }
+    else
+    {
+        options.UseMySQL(
+            builder.Configuration.GetConnectionString("DefaultConnection") ??
+            throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
+    }
+});
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services
@@ -39,15 +49,17 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    await scope.ServiceProvider
-        .GetService<ApplicationDbContext>()!
-        .Database.MigrateAsync();
+    var context = scope.ServiceProvider.GetService<ApplicationDbContext>()!;
+    var seedData = scope.ServiceProvider.GetService<SeedData>()!;
 
     if (app.Environment.IsDevelopment())
     {
-        await scope.ServiceProvider
-            .GetService<SeedData>()!
-            .InitializeAsync();
+        await context.Database.EnsureCreatedAsync();
+        await seedData.InitializeAsync();
+    }
+    else
+    {
+        await context.Database.MigrateAsync();
     }
 }
 
